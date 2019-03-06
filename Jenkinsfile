@@ -1,4 +1,4 @@
-//author: Subhadeep dasgupta dasgus5
+//author: Subhadeep dasgupta
 pipeline {
   environment{
     registry = "deepdasgupta231182/pipeline_repo82"
