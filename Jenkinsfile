@@ -12,7 +12,7 @@ pipeline {
   stages {
     stage('Cloning Git') {
       steps {
-        git 'https://github.com/mazuma5/node-todo-frontend'
+        git 'https://github.com/subhadeepdasgupta1982/node-todo-frontend'
       }
     }
         
