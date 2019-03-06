@@ -2,7 +2,7 @@
 pipeline {
   environment{
     registry = "deepdasgupta231182/pipeline_repo82"
-    registryCredential = '25d7b971-2c9e-4657-a683-2656cc8ffc13'
+    registryCredential = 'dockerhub'
     dockerImage = ''
     containerId = sh(script: 'docker ps -aqf "name=node-app"', returnStdout:true)
   }
