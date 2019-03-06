@@ -1,6 +1,6 @@
 //author: Subhadeep
 pipeline {
-  enviroment{
+  environment{
     registry = "deepdasgupta231182/pipeline_repo82"
     registryCredential = '25d7b971-2c9e-4657-a683-2656cc8ffc13'
     dockerImage = ''
