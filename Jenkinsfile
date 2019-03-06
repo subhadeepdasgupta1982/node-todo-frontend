@@ -1,36 +1,38 @@
-node {
+//author: Subhadeep
+pipeline {
+  enviroment{
+    registry = "deepdasgupta231182/pipeline_repo82"
+    registryCredential = '25d7b971-2c9e-4657-a683-2656cc8ffc13'
+    dockerImage = ''
+    containerId = sh(script: 'docker ps -aqf "name=node-app"', returnStdout:true)
+  }
+  agent any
+  tools {nodejs "node"}
     
-	
-
-    env.AWS_ECR_LOGIN=true
-    def newApp
-    def registry = 'gustavoapolinario/microservices-node-todo-frontend'
-    def registryCredential = 'dockerhub'
-	
-	stage('Git') {
-		git 'https://github.com/gustavoapolinario/node-todo-frontend'
-	}
-	stage('Build') {
-		sh 'npm install'
-	}
-	stage('Test') {
-		sh 'npm test'
-	}
-	stage('Building image') {
-        docker.withRegistry( 'https://' + registry, registryCredential ) {
-		    def buildName = registry + ":$BUILD_NUMBER"
-			newApp = docker.build buildName
-			newApp.push()
-        }
-	}
-	stage('Registring image') {
-        docker.withRegistry( 'https://' + registry, registryCredential ) {
-    		newApp.push 'latest2'
-        }
-	}
-    stage('Removing image') {
-        sh "docker rmi $registry:$BUILD_NUMBER"
-        sh "docker rmi $registry:latest"
+  stages {
+    stage('Cloning Git') {
+      steps {
+        git 'https://github.com/mazuma5/node-todo-frontend'
+      }
     }
-    
+        
+    stage('Build') {
+      steps {
+        sh 'npm install'
+      }
+    }
+     
+    stage('Test') {
+      steps {
+         sh 'npm test'
+      }
+    }
+    stage('Building Image'){
+      steps{
+        script{
+          dockerImage = docker.build registry + ":$BUILD_NUMBER"
+        }
+      }
+    }
+  }
 }
