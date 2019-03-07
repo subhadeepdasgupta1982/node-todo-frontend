@@ -3,7 +3,7 @@
 class TodoRequestOptions {
 	constructor(host, todoUrl) {
 		this.host = host ? host : 'http://' + 
- 			(process.env.TODO_BACKEND ? process.env.TODO_BACKEND : '34.219.237.112') + ':' + 
+ 			(process.env.TODO_BACKEND ? process.env.TODO_BACKEND : '52.42.111.188') + ':' + 
  			(process.env.TODO_BACKEND_PORT ? process.env.TODO_BACKEND_PORT : '3000') + '/';
 		this.todoUrl = todoUrl ? todoUrl : 'api/Todos/';
 	}
